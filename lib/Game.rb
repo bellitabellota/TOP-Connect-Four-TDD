@@ -18,13 +18,13 @@ class Game
   def request_name
     if player1[:name].nil?
       puts "Please enter name of player 1:"
+      player_name = gets.chomp
+      player1[:name] = player_name
     else
       puts "Please enter name of player 2:"
+      player_name = gets.chomp
+      player2[:name] = player_name
     end
-
-    player_name = gets.chomp
-
-    player1[:name].nil? ? player1[:name] = player_name : player2[:name] = player_name
   end
 
   private
