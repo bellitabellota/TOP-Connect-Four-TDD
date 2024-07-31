@@ -6,12 +6,12 @@ describe Game do
   describe "#request_name" do
     before do
       allow(game).to receive(:puts)
+      allow(game).to receive(:gets).and_return("Pete")
+      game.request_name
     end
 
     context "when no player name has been assigned yet" do
       it "assigns name to player 1" do
-        allow(game).to receive(:gets).and_return("Pete")
-        game.request_name
         expect(game.player1[:name]).to eq("Pete")
       end
     end
