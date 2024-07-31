@@ -1,0 +1,7 @@
+require_relative "lib/Game"
+
+game = Game.new
+
+game.play_game
+
+
