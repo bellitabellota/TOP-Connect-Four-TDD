@@ -16,7 +16,10 @@ class Game
   end
 
   def request_name
-    
+    puts "Please enter name of player 1:"
+    player_name = gets.chomp
+
+    player1[:name].nil? ? player1[:name] = player_name : player2[:name] = player_name
   end
 
   private
