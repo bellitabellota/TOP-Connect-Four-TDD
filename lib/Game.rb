@@ -15,8 +15,10 @@ class Game
   end
 
   def create_players
-    request_name
-    assign_token
+    2.times do
+      request_name
+      assign_token
+    end
   end
 
   def assign_token
