@@ -119,12 +119,12 @@ describe Game do
     context "when it receives twice an invalid input and then a valid input (0 or 1)" do
       it "prints twice the invalid message input" do
         allow(game).to receive(:puts).with("Invalid input. Try again:")
-        input_symbol = "d\n"
-        input_letter = "+\n"
+        input_symbol = "+\n"
+        input_letter = "d\n"
         valid_input = "1\n"
-        allow(game).to receive(:gets).with("Invalid input. Try again:").and_return(input_symbol, input_letter, valid_input)
+        allow(game).to receive(:gets).and_return(input_symbol, input_letter, valid_input)
 
-        expect(game).to receive(:gets).with("Invalid input. Try again:").twice
+        expect(game).to receive(:puts).with("Invalid input. Try again:").twice
         game.player_input_token
       end
     end
