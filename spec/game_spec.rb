@@ -129,4 +129,23 @@ describe Game do
       end
     end
   end
+
+  describe "#create_players" do
+    context "when 2 players are created loop stops" do
+      before do
+        allow(game).to receive(:request_name)
+        allow(game).to receive(:assign_token)
+      end
+
+      it "receives #request_name twice" do
+        expect(game).to receive(:request_name).twice
+        game.create_players
+      end
+
+      it "receives #assign_token twice" do
+        expect(game).to receive(:assign_token).twice
+        game.create_players
+      end
+    end
+  end
 end
