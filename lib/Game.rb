@@ -20,6 +20,11 @@ class Game
     puts
     puts "#{player[:name]}, please make your move by entering the number of the column in which you want to place your token:"
     next_move = request_next_move
+    place_token(next_move)
+  end
+
+  def place_token
+    column_has_empty_slot?(next_move)
   end
 
   def request_next_move

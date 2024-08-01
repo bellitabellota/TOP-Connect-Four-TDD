@@ -176,4 +176,20 @@ describe Game do
       end
     end
   end
+
+  describe "#column_has_empty_slot?" do
+    context "when the column is full" do
+      it "returns false" do
+        move = 3
+        game.board = Array.new(6) { Array.new(7, "X") }
+        expect(game.column_has_empty_slot?(move)).to eq(false)
+      end
+    end
+    context "when the column is not full" do
+      it "returns true" do
+        move = 5
+        expect(game.column_has_empty_slot?(move)).to eq(true)
+      end
+    end
+  end
 end
