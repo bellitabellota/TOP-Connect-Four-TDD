@@ -192,4 +192,23 @@ describe Game do
       end
     end
   end
+
+  describe "#verified_move" do
+    context "when #column_has_emtpy_slot? is false twice" do
+      it "receives twice invalid message" do
+        allow(game).to receive(:request_next_move)
+        allow(game).to receive(:column_has_empty_slot?).and_return(false, false, true)
+        expect(game).to receive(:puts).with("Column already complete. Please choose another column:").twice
+        game.verified_move
+      end
+    end
+
+    context "when #column_has emtpy_slot? is true" do
+      it "returns next move" do
+        allow(game).to receive(:request_next_move).and_return(7)
+        allow(game).to receive(:column_has_empty_slot?).and_return(true)
+        expect(game.verified_move).to eq(7)
+      end
+    end
+  end
 end
