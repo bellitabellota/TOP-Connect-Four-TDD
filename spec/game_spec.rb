@@ -38,13 +38,13 @@ describe Game do
   end
 
   describe "assign_token" do
-    context "when no token has been assigned" do
-      before do
-        allow(game).to receive(:puts)
-        allow(game).to receive(:player_input_token).and_return(0)
-        game.assign_token
-      end
+    before do
+      allow(game).to receive(:puts)
+      allow(game).to receive(:player_input_token).and_return(0)
+      game.assign_token
+    end
 
+    context "when no token has been assigned" do
       it "assigns chosen token to player 1" do
         expect(game.player1[:token]).to eq("\u232C")
       end
