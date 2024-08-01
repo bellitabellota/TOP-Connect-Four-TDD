@@ -122,7 +122,7 @@ describe Game do
         input_symbol = "d\n"
         input_letter = "+\n"
         valid_input = "1\n"
-        allow(game).to receive(:gets).and_return(input_symbol, input_letter, valid_input)
+        allow(game).to receive(:gets).with("Invalid input. Try again:").and_return(input_symbol, input_letter, valid_input)
 
         expect(game).to receive(:gets).with("Invalid input. Try again:").twice
         game.player_input_token

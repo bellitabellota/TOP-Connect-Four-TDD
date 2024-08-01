@@ -32,7 +32,13 @@ class Game
   end
 
   def player_input_token
-    
+    loop do
+      input = gets.chomp
+
+      return input.to_i if ["0", "1"].include?(input)
+
+      puts "Invalid input. Try again:"
+    end
   end
 
   def request_name
