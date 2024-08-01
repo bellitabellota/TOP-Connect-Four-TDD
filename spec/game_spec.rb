@@ -171,9 +171,9 @@ describe Game do
       end
 
       it "returns the integer of the valid_input" do
+        allow(game).to receive(:puts)
         expect(game.request_next_move).to eq(5)
       end
     end
-
   end
 end
