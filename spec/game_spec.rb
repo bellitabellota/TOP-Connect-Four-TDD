@@ -37,8 +37,8 @@ describe Game do
     end
   end
 
-  describe "assign_token" do
-    context "when player1 chooses first token (\u232C)" do
+  describe "#assign_token" do
+    context "when player1 chooses first token (\u232C )" do
       before do
         allow(game).to receive(:puts)
         allow(game).to receive(:player_input_token).and_return(0)
@@ -68,7 +68,7 @@ describe Game do
       end
     end
 
-    context "when player1 chooses second token (\u25A9)" do
+    context "when player1 chooses second token (\u25A9 )" do
       before do
         allow(game).to receive(:puts)
         allow(game).to receive(:player_input_token).and_return(1)
@@ -95,6 +95,37 @@ describe Game do
           game.assign_token
           expect(game.available_tokens).to eq([])
         end
+      end
+    end
+  end
+
+  describe "#player_input_token" do
+    context "when input is 0" do
+      it "returns 0" do
+        allow(game).to receive(:gets).and_return("0\n")
+        return_value = game.player_input_token
+        expect(return_value).to eq(0)
+      end
+    end
+
+    context "when input is 1" do
+      it "returns 1" do
+        allow(game).to receive(:gets).and_return("1\n")
+        return_value = game.player_input_token
+        expect(return_value).to eq(1)
+      end
+    end
+
+    context "when it receives twice an invalid input and then a valid input (0 or 1)" do
+      it "prints twice the invalid message input" do
+        allow(game).to receive(:puts).with("Invalid input. Try again:")
+        input_symbol = "d\n"
+        input_letter = "+\n"
+        valid_input = "1\n"
+        allow(game).to receive(:gets).and_return(input_symbol, input_letter, valid_input)
+
+        expect(game).to receive(:gets).with("Invalid input. Try again:").twice
+        game.player_input_token
       end
     end
   end
