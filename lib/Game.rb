@@ -23,7 +23,13 @@ class Game
   end
 
   def request_next_move
-    
+    loop do
+      input = gets.chomp
+
+      return input.to_i if input.match?(/^\d+$/) && (1..7).include?(input.to_i)
+
+      puts "Invalid input. Please enter a number between 1 and 7:"
+    end
   end
 
   def create_players
