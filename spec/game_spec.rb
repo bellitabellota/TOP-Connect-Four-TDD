@@ -148,4 +148,32 @@ describe Game do
       end
     end
   end
+
+  describe "#request_next_move" do
+    context "when entering a valid input (1-7)" do
+      it "returns the integer of the valid input" do
+        allow(game).to receive(:gets).and_return("3\n")
+        expect(game.request_next_move).to eq(3)
+      end
+    end
+
+    context "when entering invalid input twice and then a valid input" do
+      before do
+        invalid_symbol = "+\n"
+        invalid_letter = "g\n"
+        valid_input = "5\n"
+        allow(game).to receive(:gets).and_return(invalid_symbol, invalid_letter, valid_input)
+      end
+
+      it "receives invalid message twice" do
+        expect(game).to receive(:puts).with("Invalid input. Please enter a number between 1 and 7:").twice
+        game.request_next_move
+      end
+
+      it "returns the integer of the valid_input" do
+        expect(game.request_next_move).to eq(5)
+      end
+    end
+
+  end
 end

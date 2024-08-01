@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :player1, :player2, :board
+  attr_accessor :player1, :player2, :board, :current_player
   attr_reader :available_tokens
 
   def initialize
@@ -7,11 +7,23 @@ class Game
     @player2 = { name: nil, token: nil }
     @available_tokens = ["\u232C", "\u25A9"]
     @board = Array.new(6) { Array.new(7, " ") }
+    @current_player = player1
   end
 
   def play_game
     create_players
     visualizing_board
+    make_player_move(current_player)
+  end
+
+  def make_player_move(player)
+    puts
+    puts "#{player[:name]}, please make your move by entering the number of the column in which you want to place your token:"
+    next_move = request_next_move
+  end
+
+  def request_next_move
+    
   end
 
   def create_players
