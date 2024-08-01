@@ -1,5 +1,6 @@
 class Game
   attr_accessor :player1, :player2
+  attr_reader :available_tokens
 
   def initialize
     @player1 = { name: nil, token: nil }
@@ -13,6 +14,11 @@ class Game
 
   def create_players
     request_name
+    assign_token
+  end
+
+  def assign_token
+    
   end
 
   def request_name

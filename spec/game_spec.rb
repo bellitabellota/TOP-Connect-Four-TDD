@@ -36,4 +36,34 @@ describe Game do
       end
     end
   end
+
+  describe "assign_token" do
+    context "when no token has been assigned" do
+      before do
+        allow(game).to receive(:puts)
+        allow(game).to receive(:player_input).and_return(0)
+        game.assign_token
+      end
+
+      it "assigns chosen token to player 1" do
+        expect(game.player1[:token]).to eq("\u232C")
+      end
+
+      it "removes chosen token from @available_tokens array" do
+        expect(game.available_tokens).to eq(["\u25A9"])
+      end
+    end
+
+    context "when a token was already chosen by player 1" do
+      it "assigns remaining token to player 2" do
+        game.assign_token
+        expect(game.player2[:token]).to eq("\u25A9")
+      end
+
+      it "removes last remaining token from @available_tokens array" do
+        game.assign_token
+        expect(game.available_tokens).to eq([])
+      end
+    end
+  end
 end
