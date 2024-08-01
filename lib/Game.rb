@@ -23,8 +23,14 @@ class Game
     place_token(next_move)
   end
 
-  def place_token
+  def place_token(next_move)
     column_has_empty_slot?(next_move)
+  end
+
+  def column_has_empty_slot?(next_move)
+    index_column = next_move - 1
+    board.each { |array| return true if array[index_column] == " " }
+    false
   end
 
   def request_next_move
