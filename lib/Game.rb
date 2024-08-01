@@ -19,12 +19,22 @@ class Game
   def make_player_move(player)
     puts
     puts "#{player[:name]}, please make your move by entering the number of the column in which you want to place your token:"
-    next_move = request_next_move
+    next_move = verified_move
     place_token(next_move)
   end
 
   def place_token(next_move)
-    column_has_empty_slot?(next_move)
+    
+  end
+
+  def verified_move
+    loop do
+      next_move = request_next_move
+
+      return next_move if column_has_empty_slot?(next_move)
+
+      puts "Column already complete. Please choose another column:"
+    end
   end
 
   def column_has_empty_slot?(next_move)
