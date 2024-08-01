@@ -18,6 +18,20 @@ class Game
   end
 
   def assign_token
+    if player1[:token].nil?
+      puts "Time to choose your token. Press '0' for \u232C or '1' for '\u25A9'. Please enter your choice:"
+      input = player_input_token
+
+      input == 0 ? player1[:token] = available_tokens.shift : player1[:token] = available_tokens.pop
+
+      puts "#{player1[:name]} chose #{player1[:token]}."
+    else
+      player2[:token] = available_tokens.pop
+      puts "#{player2[:name]} your token is #{player2[:token]}."
+    end
+  end
+
+  def player_input_token
     
   end
 

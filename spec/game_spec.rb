@@ -41,7 +41,7 @@ describe Game do
     context "when no token has been assigned" do
       before do
         allow(game).to receive(:puts)
-        allow(game).to receive(:player_input).and_return(0)
+        allow(game).to receive(:player_input_token).and_return(0)
         game.assign_token
       end
 
