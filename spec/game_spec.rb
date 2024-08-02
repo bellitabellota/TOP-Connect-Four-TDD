@@ -294,4 +294,22 @@ describe Game do
       end
     end
   end
+
+  describe "#board_is_full?" do
+    before do
+      game.board = Array.new(6) { Array.new(7, "X") }
+    end
+    context "when board is full" do
+      it "returns true" do
+        expect(game.board_is_full?).to be true
+      end
+    end
+
+    context "even if board has only one empty slot" do
+      it "returns false" do
+        game.board[5][0] = " "
+        expect(game.board_is_full?).to be false
+      end
+    end
+  end
 end
