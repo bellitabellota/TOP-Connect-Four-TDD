@@ -233,4 +233,22 @@ describe Game do
       expect(game.board[index_row][next_move - 1]).to eq("\u232C")
     end
   end
+
+  describe "#update_current_player" do
+    context "when current player is player 1" do
+      it "updates current player to player 2" do
+        game.current_player = game.player1
+        game.update_current_player
+        expect(game.current_player).to eq(game.player2)
+      end
+    end
+
+    context "when current player is player 2" do
+      it "updates current player to player 1" do
+        game.current_player = game.player2
+        game.update_current_player
+        expect(game.current_player).to eq(game.player1)
+      end
+    end
+  end
 end
