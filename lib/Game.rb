@@ -13,9 +13,21 @@ class Game
   def play_game
     create_players
     visualizing_board
-    make_player_move(current_player)
-    visualizing_board
-    update_current_player
+    loop do
+      make_player_move(current_player)
+      visualizing_board
+      return puts "#{current_player[:name]} wins the game!" if win?
+      return puts "Tie. Board is full. Nobody won." if board_is_full?
+      update_current_player
+    end
+  end
+
+  def win?
+    
+  end
+
+  def board_is_full?
+    
   end
 
   def update_current_player
