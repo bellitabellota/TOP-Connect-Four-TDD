@@ -211,4 +211,15 @@ describe Game do
       end
     end
   end
+
+  describe "#find_free_slot" do
+    context "when next_move is passed in as argument" do
+      it "returns the index of the row with the next free slot in that column" do
+        next_move = 3
+        game.board[0][2] = "X"
+        return_value = game.find_free_slot(next_move)
+        expect(return_value).to eq(1)
+      end
+    end
+  end
 end

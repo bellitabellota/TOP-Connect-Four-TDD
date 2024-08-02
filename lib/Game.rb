@@ -23,8 +23,7 @@ class Game
     place_token(next_move)
   end
 
-  def place_token(next_move)
-    
+  def place_token(next_move) ###hier gehts weiter mit test schreiben
   end
 
   def verified_move
