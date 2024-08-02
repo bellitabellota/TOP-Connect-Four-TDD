@@ -14,6 +14,16 @@ class Game
     create_players
     visualizing_board
     make_player_move(current_player)
+    visualizing_board
+    update_current_player
+  end
+
+  def update_current_player
+    if current_player == player1
+      self.current_player = player2
+    else
+      self.current_player = player1
+    end
   end
 
   def make_player_move(player)
