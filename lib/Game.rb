@@ -23,7 +23,12 @@ class Game
     place_token(next_move)
   end
 
-  def place_token(next_move) ###hier gehts weiter mit test schreiben
+  def place_token(next_move)
+    index_row = find_free_slot(next_move)
+  end
+
+  def find_free_slot(next_move)
+    board.each_with_index { |array, index| break index if array[next_move - 1] == " " }
   end
 
   def verified_move
