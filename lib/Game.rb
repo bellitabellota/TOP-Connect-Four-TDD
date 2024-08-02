@@ -27,7 +27,8 @@ class Game
   end
 
   def board_is_full?
-    
+    flattened_board = board.flatten
+    flattened_board.none?(" ")
   end
 
   def update_current_player
