@@ -25,6 +25,11 @@ class Game
 
   def place_token(next_move)
     index_row = find_free_slot(next_move)
+    update_free_slot_with_player_token(index_row, next_move)
+  end
+
+  def update_free_slot_with_player_token(index_row, next_move)
+    board[index_row][next_move - 1] = current_player[:token]
   end
 
   def find_free_slot(next_move)
