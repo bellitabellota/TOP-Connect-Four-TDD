@@ -251,4 +251,47 @@ describe Game do
       end
     end
   end
+
+  describe "#play_game" do
+    before do
+      allow(game).to receive(:create_players)
+      allow(game).to receive(:visualizing_board)
+      allow(game).to receive(:make_player_move)
+      allow(game).to receive(:update_current_player)
+    end
+
+    context "when win? is true" do
+      it "stops the loop" do
+        allow(game).to receive(:win?).and_return(true)
+        allow(game).to receive(:puts)
+        expect(game).not_to receive(:board_is_full?)
+        game.play_game
+      end
+
+      it "receives win message once" do
+        allow(game).to receive(:win?).and_return(true)
+
+        expect(game).to receive(:puts).with("#{game.current_player[:name]} wins the game!").once
+        game.play_game
+      end
+    end
+
+    context "when board_is full? is true" do
+      it "stops the loop" do
+        allow(game).to receive(:win?)
+        allow(game).to receive(:board_is_full?).and_return(true)
+        allow(game).to receive(:puts)
+        expect(game).not_to receive(:update_current_player)
+        game.play_game
+      end
+
+      it "receives board is full message once" do
+        allow(game).to receive(:win?)
+        allow(game).to receive(:board_is_full?).and_return(true)
+        allow(game).to receive(:puts).with("Tie. Board is full. Nobody won.")
+        expect(game).to receive(:puts).with("Tie. Board is full. Nobody won.").once
+        game.play_game
+      end
+    end
+  end
 end
