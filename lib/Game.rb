@@ -8,6 +8,7 @@ class Game
     @available_tokens = ["\u232C", "\u25A9"]
     @board = Array.new(6) { Array.new(7, " ") }
     @current_player = player1
+    @last_token_position = [nil, nil]
   end
 
   def play_game
@@ -23,7 +24,12 @@ class Game
   end
 
   def win?
+    diagonal_pattern?
     
+  end
+
+  def diagonal_pattern?
+    from_lower_left_to_upper_right?
   end
 
   def board_is_full?
@@ -53,6 +59,8 @@ class Game
 
   def update_free_slot_with_player_token(index_row, next_move)
     board[index_row][next_move - 1] = current_player[:token]
+    last_token_position[0] = index_row
+    last_token_position[1] = next_move - 1
   end
 
   def find_free_slot(next_move)
