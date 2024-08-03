@@ -227,7 +227,6 @@ describe Game do
     before do
       game.current_player = game.player1
       game.current_player[:token] = "\u232C"
-
     end
 
     it "updates the free slot with player token" do
@@ -430,6 +429,7 @@ describe Game do
       it "returns true" do
         allow(game).to receive(:diagonal_pattern?).and_return(true)
         allow(game).to receive(:horizontal_pattern?).and_return(false)
+        allow(game).to receive(:vertical_pattern?).and_return(false)
         expect(game.win?).to be true
       end
     end
@@ -438,6 +438,16 @@ describe Game do
       it "returns true" do
         allow(game).to receive(:diagonal_pattern?).and_return(false)
         allow(game).to receive(:horizontal_pattern?).and_return(true)
+        allow(game).to receive(:vertical_pattern?).and_return(false)
+        expect(game.win?).to be true
+      end
+    end
+
+    context "when vertical_patter is true" do
+      it "returns true" do
+        allow(game).to receive(:diagonal_pattern?).and_return(false)
+        allow(game).to receive(:horizontal_pattern?).and_return(false)
+        allow(game).to receive(:vertical_pattern?).and_return(true)
         expect(game.win?).to be true
       end
     end
@@ -446,6 +456,7 @@ describe Game do
       it "returns false" do
         allow(game).to receive(:diagonal_pattern?).and_return(false)
         allow(game).to receive(:horizontal_pattern?).and_return(false)
+        allow(game).to receive(:vertical_pattern?).and_return(false)
         expect(game.win?).to be false
       end
     end
