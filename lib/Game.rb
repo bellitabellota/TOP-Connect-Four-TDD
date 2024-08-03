@@ -71,7 +71,7 @@ class Game
         index1 -= 1
         index2 -= 1
 
-        return false if index1.negative? || index2.negative?
+        return false if index2.negative?
         return false if board[index1][index2] != current_player[:token]
       end
       true
