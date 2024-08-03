@@ -312,4 +312,23 @@ describe Game do
       end
     end
   end
+
+  describe "#from_lower_left_to_upper_right?" do
+    context "when 4 token are in an diagonal pattern" do
+      it "returns true" do
+        game.board = Array.new(6) { Array.new(7, " ") }
+        game.board[0][0] = "\u232C"
+        game.board[1][1] = "\u232C"
+        game.board[2][2] = "\u232C"
+        game.board[4][4] = "\u232C"
+        expect(game.win?).to be true
+      end
+    end
+
+    context "when no diagonal pattern on the board" do
+      it "returns false" do
+        expect(game.win?).to be false
+      end
+    end
+  end
 end
