@@ -19,12 +19,13 @@ class Game
       visualizing_board
       return puts "#{current_player[:name]} wins the game!" if win?
       return puts "Tie. Board is full. Nobody won." if board_is_full?
+
       update_current_player
     end
   end
 
   def win?
-    diagonal_pattern? || horizontal_pattern?
+    diagonal_pattern? || horizontal_pattern? || vertical_pattern?
   end
 
   def vertical_pattern?
