@@ -91,6 +91,8 @@ class Game
     end
   end
 
+  private
+
   def visualizing_board
     puts
     puts "| #{board[5][0]} | #{board[5][1]} | #{board[5][2]} | #{board[5][3]} | #{board[5][4]} | #{board[5][5]} | #{board[5][6]} |"
@@ -102,6 +104,4 @@ class Game
     puts " \u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E"
     puts "  1   2   3   4   5   6   7  "
   end
-
-  private
 end
