@@ -331,14 +331,18 @@ describe Game do
         game.board[0][0] = "\u232C"
         game.board[1][1] = "\u232C"
         game.board[2][2] = "\u232C"
-        game.board[4][4] = "\u232C"
-        expect(game.win?).to be true
+        game.board[3][3] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.current_player[:token] = "\u232C"
+        expect(game.from_lower_left_to_upper_right?).to be true
       end
     end
 
     context "when no diagonal pattern on the board" do
       it "returns false" do
-        expect(game.win?).to be false
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        expect(game.from_lower_left_to_upper_right?).to be false
       end
     end
   end
