@@ -27,6 +27,21 @@ class Game
     diagonal_pattern? || horizontal_pattern?
   end
 
+  def vertical_pattern?
+    index1 = last_token_position[0]
+    index2 = last_token_position[1]
+
+    if index1 >= 3
+      3.times do
+        index1 -= 1
+        return false if board[index1][index2] != current_player[:token]
+      end
+      true
+    else
+      false
+    end
+  end
+
   def horizontal_pattern?
     index1 = last_token_position[0]
     token = current_player[:token]
