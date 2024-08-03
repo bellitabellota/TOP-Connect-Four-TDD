@@ -24,8 +24,7 @@ class Game
   end
 
   def win?
-    diagonal_pattern?
-    
+    diagonal_pattern? || horizontal_pattern?
   end
 
   def horizontal_pattern?
