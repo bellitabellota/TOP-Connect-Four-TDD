@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :player1, :player2, :board, :current_player
+  attr_accessor :player1, :player2, :board, :current_player, :last_token_position
   attr_reader :available_tokens
 
   def initialize
@@ -30,6 +30,24 @@ class Game
 
   def diagonal_pattern?
     from_lower_left_to_upper_right?
+  end
+
+  def from_lower_left_to_upper_right?
+    index1 = last_token_position[0]
+    index2 = last_token_position[1]
+
+    if index1 >= 3
+      3.times do
+        index1 -= 1
+        index2 -= 1
+
+        return false if index1.negative? || index2.negative?
+        return false if board[index1][index2] != current_player[:token]
+      end
+      true
+    else
+      false
+    end
   end
 
   def board_is_full?
