@@ -420,4 +420,30 @@ describe Game do
       end
     end
   end
+
+  describe "#win?" do
+    context "when diagonal_pattern is true" do
+      it "returns true" do
+        allow(game).to receive(:diagonal_pattern?).and_return(true)
+        allow(game).to receive(:horizontal_pattern?).and_return(false)
+        expect(game.win?).to be true
+      end
+    end
+
+    context "when horizontal_pattern is true" do
+      it "returns true" do
+        allow(game).to receive(:diagonal_pattern?).and_return(false)
+        allow(game).to receive(:horizontal_pattern?).and_return(true)
+        expect(game.win?).to be true
+      end
+    end
+
+    context "when none of the helper functions is true" do
+      it "returns false" do
+        allow(game).to receive(:diagonal_pattern?).and_return(false)
+        allow(game).to receive(:horizontal_pattern?).and_return(false)
+        expect(game.win?).to be false
+      end
+    end
+  end
 end
