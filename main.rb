@@ -1,4 +1,4 @@
-require_relative "lib/Game"
+require_relative "lib/game"
 
 game = Game.new
 
