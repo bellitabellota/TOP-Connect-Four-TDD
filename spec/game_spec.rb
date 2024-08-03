@@ -348,25 +348,51 @@ describe Game do
   end
 
   describe "#from_lower_right_to_upper_left?" do
-  context "when 4 token are in an diagonal pattern" do
-    it "returns true" do
-      game.board = Array.new(6) { Array.new(7, " ") }
-      game.board[0][6] = "\u232C"
-      game.board[1][5] = "\u232C"
-      game.board[2][4] = "\u232C"
-      game.board[3][3] = "\u232C"
-      game.last_token_position = [3, 3]
-      game.current_player[:token] = "\u232C"
-      expect(game.from_lower_right_to_upper_left?).to be true
+    context "when 4 token are in an diagonal pattern" do
+      it "returns true" do
+        game.board = Array.new(6) { Array.new(7, " ") }
+        game.board[0][6] = "\u232C"
+        game.board[1][5] = "\u232C"
+        game.board[2][4] = "\u232C"
+        game.board[3][3] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.current_player[:token] = "\u232C"
+        expect(game.from_lower_right_to_upper_left?).to be true
+      end
+    end
+
+    context "when no diagonal pattern on the board" do
+      it "returns false" do
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        expect(game.from_lower_right_to_upper_left?).to be false
+      end
     end
   end
 
-  context "when no diagonal pattern on the board" do
-    it "returns false" do
-      game.current_player[:token] = "\u232C"
-      game.last_token_position = [3, 3]
-      expect(game.from_lower_right_to_upper_left?).to be false
+  describe "#diagonal_pattern?" do
+    context "when #from_lower_left_to_upper_right? is true" do
+      it "returns true" do
+        allow(game).to receive(:from_lower_left_to_upper_right?).and_return(true)
+        allow(game).to receive(:from_lower_right_to_upper_left?).and_return(false)
+        expect(game.diagonal_pattern?).to be true
+      end
+    end
+
+    context "when #from_lower_right_to_upper_left?" do
+      it "returns true" do
+        allow(game).to receive(:from_lower_left_to_upper_right?).and_return(false)
+        allow(game).to receive(:from_lower_right_to_upper_left?).and_return(true)
+        expect(game.diagonal_pattern?).to be true
+      end
+    end
+
+    context "when none of the helper functions is true" do
+      it "returns false" do
+        allow(game).to receive(:from_lower_left_to_upper_right?).and_return(false)
+        allow(game).to receive(:from_lower_right_to_upper_left?).and_return(false)
+        expect(game.diagonal_pattern?).to be false
+      end
     end
   end
-end
 end

@@ -29,7 +29,11 @@ class Game
   end
 
   def diagonal_pattern?
-    from_lower_left_to_upper_right?
+    if from_lower_left_to_upper_right? || from_lower_right_to_upper_left?
+      true
+    else
+      false
+    end
   end
 
   def from_lower_right_to_upper_left?
