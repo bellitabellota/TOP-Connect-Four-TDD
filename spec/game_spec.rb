@@ -395,4 +395,29 @@ describe Game do
       end
     end
   end
+
+  describe "#horizontal_pattern?" do
+    context "when row where last token was placed contains 4 tokens in a row" do
+      it "returns true" do
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.board[3][3] = "\u232C"
+        game.board[3][4] = "\u232C"
+        game.board[3][5] = "\u232C"
+        game.board[3][6] = "\u232C"
+        expect(game.horizontal_pattern?).to be true
+      end
+    end
+
+    context "when row where last token was placed does not contain 4 tokens in a row" do
+      it "returns false" do
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.board[3][3] = "\u232C"
+        game.board[3][4] = "\u232C"
+        game.board[3][5] = "\u232C"
+        expect(game.horizontal_pattern?).to be false
+      end
+    end
+  end
 end
