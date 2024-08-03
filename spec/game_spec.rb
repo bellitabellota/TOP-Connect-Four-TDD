@@ -366,7 +366,9 @@ describe Game do
     context "when no diagonal pattern on the board" do
       it "returns false" do
         game.current_player[:token] = "\u232C"
-        game.last_token_position = [3, 3]
+        game.last_token_position = [3, 4]
+        game.last_token_position = [2, 5]
+        game.last_token_position = [1, 6]
         expect(game.from_lower_right_to_upper_left?).to be false
       end
     end
