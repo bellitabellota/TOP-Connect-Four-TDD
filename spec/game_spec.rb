@@ -450,4 +450,29 @@ describe Game do
       end
     end
   end
+
+  describe "#vertical_pattern?" do
+    context "when there is a vertical a pattern" do
+      it "returns true" do
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.board[3][3] = "\u232C"
+        game.board[2][3] = "\u232C"
+        game.board[1][3] = "\u232C"
+        game.board[0][3] = "\u232C"
+        expect(game.vertical_pattern?).to be true
+      end
+    end
+
+    context "when there is no vertical a pattern" do
+      it "returns false" do
+        game.current_player[:token] = "\u232C"
+        game.last_token_position = [3, 3]
+        game.board[3][3] = "\u232C"
+        game.board[2][3] = "\u232C"
+        game.board[1][3] = "\u232C"
+        expect(game.vertical_pattern?).to be false
+      end
+    end
+  end
 end
