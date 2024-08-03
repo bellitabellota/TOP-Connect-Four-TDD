@@ -224,13 +224,24 @@ describe Game do
   end
 
   describe "#update_free_slot_with_player_token" do
+    before do
+      game.current_player = game.player1
+      game.current_player[:token] = "\u232C"
+
+    end
+
     it "updates the free slot with player token" do
       index_row = 1
       next_move = 3
-      game.current_player = game.player1
-      game.current_player[:token] = "\u232C"
       game.update_free_slot_with_player_token(index_row, next_move)
       expect(game.board[index_row][next_move - 1]).to eq("\u232C")
+    end
+
+    it "saves index_row as first value of @last_token_position and next_move - 1 as second" do
+      index_row = 1
+      next_move = 3
+      game.update_free_slot_with_player_token(index_row, next_move)
+      expect(game.last_token_position).to eq([index_row, next_move - 1])
     end
   end
 
