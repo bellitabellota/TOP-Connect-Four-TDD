@@ -21,10 +21,10 @@ module WinningPattern
     row = board[index1]
 
     case row
-    in ["#{token}", "#{token}", "#{token}", "#{token}", _, _, _] then true
-    in [_, "#{token}", "#{token}", "#{token}", "#{token}", _, _] then true
-    in [_, _, "#{token}", "#{token}", "#{token}", "#{token}", _] then true
-    in [_, _, _, "#{token}", "#{token}", "#{token}", "#{token}"] then true
+    in ["#{token}", "#{token}", "#{token}", "#{token}", _, _, _] |
+       [_, "#{token}", "#{token}", "#{token}", "#{token}", _, _] |
+       [_, _, "#{token}", "#{token}", "#{token}", "#{token}", _] |
+       [_, _, _, "#{token}", "#{token}", "#{token}", "#{token}"] then true
     else false
     end
   end
