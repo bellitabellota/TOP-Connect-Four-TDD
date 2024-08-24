@@ -9,3 +9,5 @@ Preview of the Game being played in the CLI:
 
 <img src="https://github.com/bellitabellota/TOP-Connect-Four-TDD/blob/main/ConnectFour.gif" />
 
+
+
